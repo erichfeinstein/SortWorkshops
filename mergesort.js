@@ -5,12 +5,20 @@ function split(arr) {
   return [first, second];
 }
 
-function merge(arr1, arr2) {
+function merge(
+  arr1,
+  arr2,
+  comparator = function(a, b) {
+    if (a < b) return -1;
+    if (a > b) return 1;
+    return 0;
+  }
+) {
   let p1 = 0,
     p2 = 0;
   let result = [];
   while (p1 < arr1.length && p2 < arr2.length) {
-    if (arr1[p1] <= arr2[p2]) {
+    if (comparator(arr1[p1], arr2[p2]) <= 0) {
       result.push(arr1[p1]);
       p1++;
     } else {
@@ -23,8 +31,12 @@ function merge(arr1, arr2) {
   return result;
 }
 
-function mergeSort(arr) {
+function mergeSort(arr, comparator) {
   if (arr.length <= 1) return arr;
   let splitArr = split(arr);
-  return merge(mergeSort(splitArr[0]), mergeSort(splitArr[1]));
+  return merge(
+    mergeSort(splitArr[0], comparator),
+    mergeSort(splitArr[1], comparator),
+    comparator
+  );
 }
