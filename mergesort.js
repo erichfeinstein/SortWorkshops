@@ -23,6 +23,8 @@ function merge(arr1, arr2) {
   return result;
 }
 
-function mergeSort(arr) {}
-
-[arr, ...arr];
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
+  let splitArr = split(arr);
+  return merge(mergeSort(splitArr[0]), mergeSort(splitArr[1]));
+}

@@ -23,6 +23,9 @@ describe('Merge Sort', function() {
   it('handles an empty array', function() {
     expect(mergeSort([])).toEqual([]);
   });
+  it('sorts an array of unsorted numbers', function() {
+    expect(mergeSort([1, 5, 2, 6, 3, 7])).toEqual([1, 2, 3, 5, 6, 7]);
+  });
 });
 // beforeEach(function() {
 //   spyOn(window, 'swap').and.callThrough();
